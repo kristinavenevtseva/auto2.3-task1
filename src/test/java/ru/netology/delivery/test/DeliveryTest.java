@@ -1,6 +1,5 @@
 package ru.netology.delivery.test;
 
-import lombok.var;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,32 +24,6 @@ class DeliveryTest {
     @Test
     @DisplayName("Should successful plan and replan meeting")
     void shouldSuccessfulPlanAndReplanMeeting() {
-        var daysToAddForFirstMeeting = 4;
-        var firstMeetingDate = DataGenerator.generateDate(daysToAddForFirstMeeting);
-        var daysToAddForSecondMeeting = 7;
-        var secondMeetingDate = DataGenerator.generateDate(daysToAddForSecondMeeting);
-
-        $("[data-test-id=city] input").setValue(DataGenerator.generateCity("ru"));
-        $("[data-test-id=date] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        $("[data-test-id=date] input").setValue(firstMeetingDate);
-        $("[data-test-id=name] input").setValue(DataGenerator.generateName("ru"));
-        $("[data-test-id=phone] input").setValue(DataGenerator.generatePhone("ru"));
-        $("[data-test-id=agreement]").click();
-        $(byText("Запланировать")).click();
-        $(byText("Успешно!")).shouldBe(visible, Duration.ofSeconds(15));
-        $(".notification__content").shouldHave(text("Встреча успешно запланирована на " + firstMeetingDate));
-
-        $("[data-test-id=date] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        $("[data-test-id=date] input").setValue(secondMeetingDate);
-        $(byText("Запланировать")).click();
-        $("[data-test-id=replan-notification]").shouldHave(text("У вас уже запланирована встреча на другую дату. Перепланировать?"));
-        $(byText("Перепланировать")).click();
-        $(".notification__content").shouldHave(text("Встреча успешно запланирована на " + secondMeetingDate));
-    }
-
-    @Test
-    @DisplayName("Should successful plan and replan meeting v2")
-    void shouldSuccessfulPlanAndReplanMeeting2() {
         var validUser = DataGenerator.Registration.generateUser("ru");
         var daysToAddForFirstMeeting = 4;
         var firstMeetingDate = DataGenerator.generateDate(daysToAddForFirstMeeting);
